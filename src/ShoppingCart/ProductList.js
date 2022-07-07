@@ -1,7 +1,9 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 
-export default function ProductList() {
+export default function ProductList(props) {
+  
+  console.log(props)
   const arrayProduct = [
     {
       id: 1,
@@ -36,29 +38,16 @@ export default function ProductList() {
       backCam: "7 MP",
       ram: "4 GB",
       rom: "64 GB",
-      price: 900,
+      price: 900,    
       img: "./img/applephone.jpg",
     },
   ];
   const renderProduct = () => {
     return arrayProduct.map((product, index) => {
-      return (
+         return (
         <div className="col-4" key={index}>
-          <div classname="card text-center">
-            <img
-              classname="card-img-hitop"
-              src="./img/applephone.jpg"
-              alt="phone"
-              style={{width: 300, height: 300}}
-            />
-            <div classname="card-body text-center">
-              <h4 classname="card-title">Iphone</h4>
-              <p classname="card-text">500</p>
-              <button className="btn btn-success" onClick={() => {}}>
-                Add to cart
-              </button>
-            </div>
-          </div>
+          <ProductItem productProps={product} addProductProps={props.addProductProps}
+          />
         </div>
       );
     });
@@ -67,24 +56,8 @@ export default function ProductList() {
   return (
     <div>
       <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <div classname="card text-center">
-              <img
-                classname="card-img-hitop"
-                src="./img/applephone.jpg"
-                alt="phone"
-                style={{width: 300, height: 300}}
-              />
-              <div classname="card-body text-center">
-                <h4 classname="card-title">Iphone</h4>
-                <p classname="card-text">500</p>
-                <button className="btn btn-success" onClick={() => {}}>
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
+        <div className="row">{renderProduct(arrayProduct)}<div/>
+          
         </div>
       </div>
     </div>
